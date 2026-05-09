@@ -90,3 +90,7 @@
 .animate-wave3 {
     animation: wave3 0.9s infinite ease-in-out;
 }
+
+.glass-card {
+    --tw-backdrop-blur: none;
+}

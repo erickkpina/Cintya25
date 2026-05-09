@@ -37,8 +37,6 @@ export default function MusicSection({
             ref={containerRef}
             className="py-32 px-6 flex items-center justify-center relative overflow-hidden"
         >
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-romantic-pink/5 to-transparent pointer-events-none" />
-
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -73,9 +71,13 @@ export default function MusicSection({
                 </div>
 
                 <p className="text-starlight/60 italic font-serif text-lg leading-relaxed">
-                    "Hey, hey... You'll never be alone.{" "}
+                    "When you miss me close your eyes
                     <br className="hidden md:block" />
-                    All you have to do is wait for me to come home."
+                    I may be far but never gone...
+                    <br className="hidden md:block" />
+                    When you fall asleep tonight
+                    <br className="hidden md:block" />
+                    Just remember that we lay under the same stars"
                 </p>
 
                 <button
@@ -85,12 +87,12 @@ export default function MusicSection({
                     <span className="relative z-10">
                         <i
                             className={`fa-solid ${
-                                isPlaying ? "fa-stop" : "fa-play"
+                                isPlaying ? "fa-pause" : "fa-play"
                             }`}
                         />
 
                         <span className="pl-3">
-                            {isPlaying ? "Parar música" : "Tocar música"}
+                            {isPlaying ? "Pausar música" : "Tocar música"}
                         </span>
                     </span>
                     <div className="absolute inset-0 bg-romantic-pink/10 opacity-0 group-hover:opacity-100 transition-opacity" />

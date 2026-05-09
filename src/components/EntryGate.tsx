@@ -1,47 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-interface EntryGateProps {
-    onEnter: () => void;
-}
-
-export default function EntryGate({ onEnter }: EntryGateProps) {
+export default function EntryGate() {
     const [progress, setProgress] = useState(0);
     const [isComplete, setIsComplete] = useState(false);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.code === "Space" && !isComplete) {
-                e.preventDefault();
-                setProgress((prev) => {
-                    const next = prev + 5;
-                    if (next >= 100) {
-                        setIsComplete(true);
-                        setTimeout(onEnter, 1000);
-                        return 100;
-                    }
-                    return next;
-                });
-            }
-        };
-
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [isComplete, onEnter]);
-
-    const handleClick = () => {
+    const increaseProgress = () => {
         if (isComplete) return;
         setProgress((prev) => {
             const next = prev + 5;
             if (next >= 100) {
                 setIsComplete(true);
-                setTimeout(onEnter, 1000);
                 return 100;
             }
             return next;
         });
     };
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.code === "Space") {
+                e.preventDefault();
+                increaseProgress();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [isComplete]);
+
+    useEffect(() => {
+        if (isComplete) {
+            const timeout = setTimeout(() => {
+                navigate("/landing");
+            }, 1000);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [isComplete, navigate]);
 
     return (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-space-black p-6">
@@ -92,7 +91,7 @@ export default function EntryGate({ onEnter }: EntryGateProps) {
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={handleClick}
+                    onClick={increaseProgress}
                     className="md:hidden glass-card px-8 py-3 text-romantic-pink font-display tracking-widest text-xs uppercase"
                 >
                     Toque para Encher

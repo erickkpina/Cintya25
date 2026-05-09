@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { Pin, ArrowRight, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Photo {
     url: string;
@@ -99,8 +100,9 @@ const sections: PhotoSection[] = [
     },
 ];
 
-export default function PhotoGallery({ onBack }: { onBack: () => void }) {
+export default function PhotoGallery() {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const navigate = useNavigate();
 
     const nextSection = () => {
         if (currentIndex < sections.length - 1) {
@@ -123,7 +125,7 @@ export default function PhotoGallery({ onBack }: { onBack: () => void }) {
                 whileInView={{ opacity: 1, y: 0 }}
             >
                 <button
-                    onClick={onBack}
+                    onClick={() => navigate("/landing")}
                     className="glass-card px-8 py-3 absolute top-6 left-6 text-romantic-pink font-display tracking-widest text-xs uppercase hover:bg-white/10 transition-all flex items-center gap-3 mx-auto"
                 >
                     <ArrowLeft className="size-4" />

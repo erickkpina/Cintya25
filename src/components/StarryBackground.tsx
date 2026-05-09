@@ -26,6 +26,8 @@ export default function StarryBackground({
         }[] = [];
 
         const resize = () => {
+            if (!canvas) return;
+
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             initStars();
@@ -61,6 +63,7 @@ export default function StarryBackground({
                 if (star.opacity > 1) star.opacity = 1;
             });
 
+            ctx.globalAlpha = 1;
             animationFrameId = requestAnimationFrame(draw);
         };
 
