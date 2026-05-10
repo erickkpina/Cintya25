@@ -6,9 +6,11 @@ import EntryGate from "./Components/EntryGate";
 import StarryBackground from "./Components/StarryBackground";
 import PhotoGallery from "./Pages/PhotoGallery";
 import Landing from "./Pages/Landing";
+import Reasons from "./Pages/Reasons";
 
 export default function App() {
     const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+    const [isMusicPaused, setIsMusicPaused] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const location = useLocation();
     const backgroundColor =
@@ -24,13 +26,14 @@ export default function App() {
         }
     }, []);
 
-    const toggleMusic = () => {
-        setIsMusicPlaying((prev) => {
-            const next = !prev;
+    const toggleMusic = (play: boolean) => {
+        setIsMusicPlaying(() => {
+            const next = play;
 
             if (!audioRef.current) return next;
 
             if (next) {
+                audioRef.current.volume = 0.5;
                 audioRef.current
                     ?.play()
                     .catch((err) => console.log("Play blocked:", err));
@@ -40,6 +43,10 @@ export default function App() {
 
             return next;
         });
+
+        if (isMusicPaused && play) {
+            setIsMusicPaused(false);
+        }
     };
 
     const fadeOut = () => {
@@ -52,6 +59,7 @@ export default function App() {
 
             if (volume <= 0) {
                 audioRef.current!.pause();
+                setIsMusicPaused(true);
                 clearInterval(interval);
             } else {
                 audioRef.current!.volume = volume;
@@ -89,11 +97,13 @@ export default function App() {
                                 <Landing
                                     toggleMusic={toggleMusic}
                                     isMusicPlaying={isMusicPlaying}
+                                    isMusicPaused={isMusicPaused}
                                 />
                             }
                         />
 
                         <Route path="/gallery" element={<PhotoGallery />} />
+                        <Route path="/25reasons" element={<Reasons />} />
                     </Routes>
                 </motion.div>
             </AnimatePresence>

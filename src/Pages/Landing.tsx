@@ -8,16 +8,21 @@ import Timeline from "../Components/Timeline";
 import Hero from "../Components/Hero";
 
 interface LandingProps {
-    toggleMusic: () => void;
+    toggleMusic: (play: boolean) => void;
     isMusicPlaying: boolean;
+    isMusicPaused: boolean;
 }
 
-export default function Landing({ toggleMusic, isMusicPlaying }: LandingProps) {
+export default function Landing({
+    toggleMusic,
+    isMusicPlaying,
+    isMusicPaused,
+}: LandingProps) {
     const navigate = useNavigate();
 
     return (
         <main className="relative z-10">
-            <Hero toggleMusic={toggleMusic} />
+            <Hero toggleMusic={toggleMusic} isMusicPaused={isMusicPaused} />
             <Dictionary />
             <MusicSection
                 onToggleBtnCLick={toggleMusic}
@@ -25,19 +30,15 @@ export default function Landing({ toggleMusic, isMusicPlaying }: LandingProps) {
             />
             <Timeline />
 
-            <motion.div
-                className="pb-18"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+            <motion.button
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 mb-18 glass-card px-8 py-3 text-romantic-pink font-serif italic text-lg shadow-xl transition-all flex items-center gap-3 mx-auto group hover:bg-white/10 cursor-pointer"
+                onClick={() => navigate("/gallery")}
             >
-                <button
-                    onClick={() => navigate("/gallery")}
-                    className="glass-card px-8 py-3 text-romantic-pink font-display tracking-widest text-xs uppercase hover:bg-white/10 transition-all flex items-center gap-3 mx-auto"
-                >
-                    Nossa História em Fotos
-                    <ArrowRight className="size-4" />
-                </button>
-            </motion.div>
+                Nossa História em Fotos
+                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+            </motion.button>
 
             <footer className="py-20 text-center border-t border-white/5">
                 <p className="text-romantic-pink font-serif italic text-lg mb-2">

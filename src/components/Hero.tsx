@@ -3,18 +3,23 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
 type HeroProps = {
-    toggleMusic: () => void;
+    toggleMusic: (play: boolean) => void;
+    isMusicPaused: boolean;
 };
 
-export default function Hero({ toggleMusic }: HeroProps) {
+export default function Hero({ toggleMusic, isMusicPaused }: HeroProps) {
     const ref = useRef<HTMLDivElement>(null);
     const triggeredRef = useRef(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting && !triggeredRef.current) {
-                    toggleMusic();
+                if (
+                    entry.isIntersecting &&
+                    !triggeredRef.current &&
+                    !isMusicPaused
+                ) {
+                    toggleMusic(true);
                     triggeredRef.current = true;
                 }
             },

@@ -4,7 +4,7 @@ import { Music, VolumeX } from "lucide-react";
 import SoundWaves from "./SoundWaves";
 
 interface MusicSectionProps {
-    onToggleBtnCLick: () => void;
+    onToggleBtnCLick: (play: boolean) => void;
     isPlaying: boolean;
 }
 
@@ -81,8 +81,8 @@ export default function MusicSection({
                 </p>
 
                 <button
-                    onClick={onToggleBtnCLick}
-                    className="group relative px-6 py-3 rounded-full border border-romantic-pink/30 text-starlight font-serif tracking-wide overflow-hidden"
+                    onClick={() => onToggleBtnCLick(!isPlaying)}
+                    className="group relative px-6 py-3 rounded-full border border-romantic-pink/30 text-starlight font-serif tracking-wide overflow-hidden cursor-pointer"
                 >
                     <span className="relative z-10">
                         <i

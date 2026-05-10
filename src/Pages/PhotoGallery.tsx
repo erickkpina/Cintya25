@@ -3,6 +3,8 @@ import { motion } from "motion/react";
 import { Pin, ArrowRight, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+import Polaroid from "../Components/Polaroid";
+
 interface Photo {
     url: string;
     caption: string;
@@ -118,7 +120,7 @@ export default function PhotoGallery() {
 
     return (
         <div className="fixed inset-0 z-40 flex flex-col items-center justify-center overflow-hidden">
-            {/* Botão de voltar */}
+            {/* Back button */}
             <motion.div
                 className="pb-18"
                 initial={{ opacity: 0, y: 20 }}
@@ -126,27 +128,27 @@ export default function PhotoGallery() {
             >
                 <button
                     onClick={() => navigate("/landing")}
-                    className="glass-card px-8 py-3 absolute top-6 left-6 text-romantic-pink font-display tracking-widest text-xs uppercase hover:bg-white/10 transition-all flex items-center gap-3 mx-auto"
+                    className="glass-card px-8 py-3 absolute top-6 left-6 text-romantic-pink font-display tracking-widest text-xs uppercase transition-all flex items-center gap-3 mx-auto hover:bg-white/10 cursor-pointer"
                 >
                     <ArrowLeft className="size-4" />
                     Voltar
                 </button>
             </motion.div>
 
-            <div className="relative w-full max-w-6xl px-6 h-full flex flex-col justify-center gap-12">
+            <div className="relative w-full max-w-7xl px-6 h-full flex flex-col justify-center gap-12">
                 <motion.div
                     key={currentIndex}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.05 }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-4 items-center"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-12 items-center py-18"
                 >
                     {sections[currentIndex].photos.map((photo, i) => (
                         <Polaroid
                             key={i}
+                            index={i}
                             url={photo.url}
                             caption={photo.caption}
-                            index={i}
                         />
                     ))}
                 </motion.div>
@@ -157,7 +159,7 @@ export default function PhotoGallery() {
                         <button
                             onClick={prevSection}
                             disabled={currentIndex === 0}
-                            className="text-romantic-pink hover:text-soft-rose disabled:opacity-30 transition-colors"
+                            className="text-romantic-pink hover:text-soft-rose disabled:opacity-30 disabled:cursor-default transition-colors cursor-pointer"
                         >
                             <ArrowRight className="rotate-180 size-6" />
                         </button>
@@ -179,7 +181,7 @@ export default function PhotoGallery() {
                         <button
                             onClick={nextSection}
                             disabled={currentIndex === sections.length - 1}
-                            className="text-romantic-pink hover:text-soft-rose disabled:opacity-30 transition-colors"
+                            className="text-romantic-pink hover:text-soft-rose disabled:opacity-30 disabled:cursor-default transition-colors cursor-pointer"
                         >
                             <ArrowRight className="size-6" />
                         </button>
@@ -193,7 +195,8 @@ export default function PhotoGallery() {
                         <motion.button
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="mt-4 glass-card bg-white/20 border-romantic-pink/20 px-8 py-3 text-romantic-pink font-serif italic text-lg shadow-xl hover:bg-white/30 transition-all flex items-center gap-2 group"
+                            className="mt-4 mb-18 glass-card px-8 py-3 text-romantic-pink font-serif italic text-lg shadow-xl transition-all flex items-center gap-3 mx-auto group hover:bg-white/10 cursor-pointer"
+                            onClick={() => navigate("/25reasons")}
                         >
                             Motivos para te amar
                             <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
@@ -202,54 +205,5 @@ export default function PhotoGallery() {
                 </div>
             </div>
         </div>
-    );
-}
-
-function Polaroid({
-    url,
-    caption,
-    index,
-}: {
-    url: string;
-    caption: string;
-    index: number;
-}) {
-    const pinColors = [
-        "bg-red-400",
-        "bg-blue-400",
-        "bg-yellow-400",
-        "bg-green-400",
-    ];
-    const rotations = [-3, 2, -1, 3];
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 50, rotate: rotations[index] * 5 }}
-            animate={{ opacity: 1, y: 0, rotate: rotations[index] }}
-            transition={{ delay: index * 0.1, duration: 0.8, type: "spring" }}
-            className="relative bg-white p-3 pb-12 shadow-2xl group hover:-translate-y-4 transition-transform duration-500"
-        >
-            {/* Pin */}
-            <div
-                className={`absolute -top-3 left-1/2 -translate-x-1/2 size-4 rounded-full shadow-md z-10 flex items-center justify-center ${pinColors[index]}`}
-            >
-                <div className="size-1 bg-white/40 rounded-full" />
-            </div>
-
-            <div className="w-full aspect-[4/5] bg-gray-100 overflow-hidden relative">
-                <img
-                    src={url}
-                    alt={caption}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/5 pointer-events-none" />
-            </div>
-
-            <div className="mt-4 px-2">
-                <p className="font-serif italic text-gray-800 text-lg tracking-tight">
-                    {caption}
-                </p>
-            </div>
-        </motion.div>
     );
 }
