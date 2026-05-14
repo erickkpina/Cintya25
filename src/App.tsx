@@ -18,6 +18,8 @@ export default function App() {
             ? "#1a1a2e"
             : location.pathname === "/gallery"
             ? "#221a2e"
+            : location.pathname === "/25reasons"
+            ? "#8c00ff0f"
             : "#000000";
 
     useEffect(() => {

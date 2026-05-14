@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { MousePointer2, LayoutGrid } from "lucide-react";
+import { MousePointer2, ArrowLeft } from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 
 const reasons = [
@@ -124,28 +125,21 @@ export default function Reasons() {
     }
 
     return (
-        <div className="fixed inset-0 z-40 bg-[#0a0e1a] flex flex-col items-center justify-center overflow-hidden">
-            {/* Starry Background for this section */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none">
-                {Array.from({ length: 20 }).map((_, i) => (
-                    <motion.div
-                        key={i}
-                        animate={{ opacity: [0.2, 0.5, 0.2] }}
-                        transition={{
-                            duration: Math.random() * 3 + 2,
-                            repeat: Infinity,
-                        }}
-                        className="absolute rounded-full bg-white"
-                        style={{
-                            top: `${Math.random() * 100}%`,
-                            left: `${Math.random() * 100}%`,
-                            width: `${Math.random() * 2 + 1}px`,
-                            height: `${Math.random() * 2 + 1}px`,
-                        }}
-                    />
-                ))}
-            </div>
-
+        <div className="fixed inset-0 z-40 /*bg-[#0a0e1a]*/ flex flex-col items-center justify-center overflow-hidden">
+            {/* Back button */}
+            <motion.div
+                className="pb-18"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+            >
+                <button
+                    onClick={() => navigate("/gallery")}
+                    className="glass-card px-8 py-3 absolute top-6 left-6 text-romantic-pink font-display tracking-widest text-xs uppercase transition-all flex items-center gap-3 mx-auto hover:bg-white/10 cursor-pointer"
+                >
+                    <ArrowLeft className="size-4" />
+                    Voltar
+                </button>
+            </motion.div>
             <div className="relative z-10 text-center space-y-16 w-full max-w-lg px-6">
                 <div className="space-y-3">
                     <motion.h2
@@ -227,8 +221,8 @@ export default function Reasons() {
                     </motion.div>
 
                     {/* Floating Instructions */}
-                    <AnimatePresence>
-                        {!activeReason && (
+                    {!activeReason && (
+                        <AnimatePresence>
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -242,40 +236,19 @@ export default function Reasons() {
                                         : "Abrir mural final"}
                                 </span>
                             </motion.div>
-                        )}
-                    </AnimatePresence>
+                        </AnimatePresence>
+                    )}
                 </div>
 
                 {/* Flying Post-it Transition */}
-                <AnimatePresence>
-                    {activeReason && (
+                {activeReason && (
+                    <AnimatePresence>
                         <motion.div
                             layoutId="post-it"
-                            initial={{
-                                scale: 0.2,
-                                y: 150,
-                                rotate: 0,
-                                opacity: 0,
-                            }}
-                            animate={{
-                                scale: [0.2, 1.1, 1],
-                                y: [150, -100, 0],
-                                rotate: (Math.random() - 0.5) * 15,
-                                opacity: 1,
-                            }}
-                            transition={{
-                                duration: 0.8,
-                                times: [0, 0.6, 1],
-                                ease: "easeOut",
-                            }}
-                            exit={{
-                                scale: 0.5,
-                                y: -600,
-                                opacity: 0,
-                                filter: "blur(10px)",
-                                transition: { duration: 0.6 },
-                            }}
-                            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-md"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0, transition: { duration: 0.3 } }}
+                            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-[#0a0e1a]/60 backdrop-blur-2xl"
                             onClick={() => setActiveReason(null)}
                         >
                             <motion.div
@@ -284,16 +257,44 @@ export default function Reasons() {
                                         randomizedColorIndices[currentIndex - 1]
                                     ]
                                 } w-72 h-72 md:w-80 md:h-80 p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] relative transform-gpu hover:rotate-0 transition-transform`}
-                                initial={{ rotateX: 30 }}
-                                animate={{ rotateX: 0 }}
+                                initial={{
+                                    scale: 0,
+                                    y: 200,
+                                    rotate: 0,
+                                    rotateX: 45,
+                                }}
+                                animate={{
+                                    scale: [0, 0.2, 0.2, 1.1, 1],
+                                    y: [200, 150, -100, -100, 0],
+                                    rotate: [
+                                        0,
+                                        0,
+                                        0,
+                                        15,
+                                        (Math.random() - 0.5) * 10,
+                                    ],
+                                    rotateX: [45, 45, 45, 0, 0],
+                                }}
+                                transition={{
+                                    duration: 1.2,
+                                    times: [0, 0.2, 0.4, 0.8, 1],
+                                    ease: "easeInOut",
+                                }}
+                                exit={{
+                                    scale: 0,
+                                    y: -400,
+                                    opacity: 0,
+                                    filter: "blur(10px)",
+                                    transition: { duration: 0.4 },
+                                }}
                             >
                                 <div className="absolute top-0 left-0 right-0 h-10 bg-black/5" />
-                                <p className="text-gray-800 font-serif text-xl md:text-2xl leading-relaxed text-center italic mt-4">
+                                <p className="text-gray-800 font-serif text-xl md:text-2xl leading-relaxed text-center italic mt-4 select-none">
                                     "{activeReason}"
                                 </p>
-                                <div className="absolute bottom-6 right-6 flex flex-col items-end opacity-40">
+                                <div className="absolute bottom-6 right-6 flex flex-col items-end opacity-70">
                                     <span className="text-[10px] font-mono uppercase">
-                                        Reason #{currentIndex}
+                                        Motivo #{currentIndex}
                                     </span>
                                     <span className="text-[8px] font-mono">
                                         Tap to continue
@@ -301,8 +302,8 @@ export default function Reasons() {
                                 </div>
                             </motion.div>
                         </motion.div>
-                    )}
-                </AnimatePresence>
+                    </AnimatePresence>
+                )}
 
                 {currentIndex >= reasons.length && !activeReason && (
                     <motion.div

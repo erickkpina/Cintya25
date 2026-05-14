@@ -25,9 +25,20 @@ export default function StarryBackground({
             opacity: number;
         }[] = [];
 
-        const resize = () => {
-            if (!canvas) return;
+        let shootingStars: {
+            x: number;
+            y: number;
+            length: number;
+            speed: number;
+            opacity: number;
+            angle: number;
+        }[] = [];
 
+        // Min / Max angle for shooting stars (in radians)
+        const minAngle = Math.PI / 8; // 22.5°
+        const maxAngle = Math.PI / 3; // 60°
+
+        const resize = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             initStars();
@@ -41,21 +52,40 @@ export default function StarryBackground({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
                     size: Math.random() * 1.5,
-                    speed: Math.random() * 0.05,
+                    speed: 0.09 + Math.random() * 0.03, // Slight movement
                     opacity: Math.random(),
                 });
             }
         };
 
+        const createShootingStar = () => {
+            shootingStars.push({
+                x: ((Math.random() + Math.random()) / 2) * canvas.width,
+                y: Math.random() * canvas.height * 0.5,
+                length: Math.random() * 80 + 20,
+                speed: Math.random() * 10 + 5,
+                opacity: 1,
+                angle: Math.random() * (maxAngle - minAngle) + minAngle,
+            });
+        };
+
+        // Spawn shooting star roughly every 7 seconds
+        const shootingStarInterval = setInterval(createShootingStar, 7000);
+
         const draw = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#FDFDFD";
 
+            // Draw Stars
+            ctx.fillStyle = "#FDFDFD";
             stars.forEach((star) => {
                 ctx.globalAlpha = star.opacity;
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
                 ctx.fill();
+
+                // Slow rotation/sideways movement
+                star.x += star.speed;
+                if (star.x > canvas.width) star.x = 0;
 
                 // Twinkle effect
                 star.opacity += (Math.random() - 0.5) * 0.03;
@@ -63,7 +93,28 @@ export default function StarryBackground({
                 if (star.opacity > 1) star.opacity = 1;
             });
 
-            ctx.globalAlpha = 1;
+            // Draw Shooting Stars
+            shootingStars.forEach((ss, index) => {
+                ctx.globalAlpha = ss.opacity;
+                ctx.strokeStyle = "#FFFFFF";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(ss.x, ss.y);
+                ctx.lineTo(
+                    ss.x + ss.length * Math.cos(ss.angle),
+                    ss.y + ss.length * Math.sin(ss.angle)
+                );
+                ctx.stroke();
+
+                ss.x += ss.speed * Math.cos(ss.angle);
+                ss.y += ss.speed * Math.sin(ss.angle);
+                ss.opacity -= 0.01;
+
+                if (ss.opacity <= 0) {
+                    shootingStars.splice(index, 1);
+                }
+            });
+
             animationFrameId = requestAnimationFrame(draw);
         };
 
@@ -74,6 +125,7 @@ export default function StarryBackground({
         return () => {
             window.removeEventListener("resize", resize);
             cancelAnimationFrame(animationFrameId);
+            clearInterval(shootingStarInterval);
         };
     }, []);
 
