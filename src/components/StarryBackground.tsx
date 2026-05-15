@@ -59,6 +59,7 @@ export default function StarryBackground({
         };
 
         const createShootingStar = () => {
+            if (location.pathname === "/moonLetter") return; // Disable shooting stars on Moon Letter page
             shootingStars.push({
                 x: ((Math.random() + Math.random()) / 2) * canvas.width,
                 y: Math.random() * canvas.height * 0.5,
