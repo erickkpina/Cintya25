@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { reasonsList } from "../Data/ReasonsPageData";
 
 export default function ReasonsBoard() {
@@ -11,7 +11,6 @@ export default function ReasonsBoard() {
         <div className="min-h-screen bg-space-black p-10 pt-24 overflow-y-auto">
             {/* Back button */}
             <motion.div
-                className="pb-18"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
             >
@@ -28,13 +27,13 @@ export default function ReasonsBoard() {
                 animate={{ opacity: 1 }}
                 className="max-w-7xl mx-auto space-y-12"
             >
-                <div className="text-center space-y-4">
+                <div className="text-center space-y-4 relative">
                     <h2 className="text-4xl font-serif text-starlight text-glow-white">
-                        25 Motivos para te amar
+                        25 motivos para te amar
                     </h2>
 
                     <p className="text-romantic-pink/60 font-display tracking-widest text-[10px] uppercase italic">
-                        Nossa constelação de memórias e razões
+                        Nem 1% de todos os motivos que existem...
                     </p>
                 </div>
 
@@ -67,6 +66,16 @@ export default function ReasonsBoard() {
                         </motion.div>
                     ))}
                 </div>
+
+                <motion.button
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-4 mb-18 glass-card px-8 py-3 text-romantic-pink font-serif italic text-lg shadow-xl transition-all flex items-center gap-3 mx-auto group hover:bg-white/10 cursor-pointer relative"
+                    onClick={() => navigate("/moonLetter")}
+                >
+                    Uma última surpresa...
+                    <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
             </motion.div>
         </div>
     );

@@ -8,6 +8,7 @@ import PhotoGallery from "./Pages/PhotoGallery";
 import Landing from "./Pages/Landing";
 import Reasons from "./Pages/Reasons";
 import ReasonsBoard from "./Pages/ReasonsBoard";
+import MoonLetter from "./Pages/MoonLetter";
 
 export default function App() {
     const [isMusicPlaying, setIsMusicPlaying] = useState(false);
@@ -108,6 +109,7 @@ export default function App() {
                         <Route path="/gallery" element={<PhotoGallery />} />
                         <Route path="/25reasons" element={<Reasons />} />
                         <Route path="/allReasons" element={<ReasonsBoard />} />
+                        <Route path="/moonLetter" element={<MoonLetter />} />
                     </Routes>
                 </motion.div>
             </AnimatePresence>

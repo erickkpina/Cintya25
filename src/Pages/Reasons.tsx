@@ -51,7 +51,6 @@ export default function Reasons() {
         <div className="fixed inset-0 z-40 /*bg-[#0a0e1a]*/ flex flex-col items-center justify-center overflow-hidden">
             {/* Back button */}
             <motion.div
-                className="pb-18"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
             >
@@ -98,7 +97,7 @@ export default function Reasons() {
                 </div>
 
                 {/* Animated Jar */}
-                <div className="relative flex flex-col items-center">
+                <div className="relative flex flex-col items-center select-none">
                     <motion.div
                         whileHover="hover"
                         onClick={handlePickReason}
@@ -150,7 +149,7 @@ export default function Reasons() {
 
                         {/* Label */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 glass-card bg-white/10 px-3 py-1 border-white/20 z-10">
-                            <span className="text-[8px] text-starlight/60 uppercase tracking-tighter">
+                            <span className="text-[8px] text-starlight/60 uppercase tracking-tighter select-none">
                                 25 motivos para te amar
                             </span>
                         </div>

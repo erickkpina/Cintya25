@@ -17,11 +17,15 @@
     body {
         @apply bg-space-black text-starlight font-sans overflow-x-hidden;
     }
+}
 
+@layer components {
     .glass-card {
         @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
     }
+}
 
+@layer utilities {
     .text-glow-pink {
         text-shadow: 0 0 10px rgba(255, 183, 197, 0.4);
     }
