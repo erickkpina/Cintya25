@@ -9,9 +9,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { animate } from "framer-motion";
 import { Mail, Heart, MoonStar, ArrowLeft } from "lucide-react";
-import { ArtemisBooster, ArtemisMainStage } from "../Components/ArtemisRocket";
+import { ArtemisBooster, ArtemisMainStage } from "../components/ArtemisRocket";
 
-import OrionCapsule from "../Components/OrionCapsule";
+import OrionCapsule from "../components/OrionCapsule";
 
 export default function MoonLetter() {
     const [phase, setPhase] = useState<"intro" | "flight" | "moon" | "letter">(

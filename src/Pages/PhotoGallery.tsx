@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Pin, ArrowRight, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-import Polaroid from "../Components/Polaroid";
+import Polaroid from "../components/Polaroid";
 
 interface Photo {
     url: string;

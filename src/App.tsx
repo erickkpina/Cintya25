@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
-import EntryGate from "./Components/EntryGate";
-import StarryBackground from "./Components/StarryBackground";
+import EntryGate from "./components/EntryGate";
+import StarryBackground from "./components/StarryBackground";
 import PhotoGallery from "./Pages/PhotoGallery";
 import Landing from "./Pages/Landing";
 import Reasons from "./Pages/Reasons";

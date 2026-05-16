@@ -2,10 +2,10 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-import Dictionary from "../Components/Dictionary";
-import MusicSection from "../Components/MusicSection";
-import Timeline from "../Components/Timeline";
-import Hero from "../Components/Hero";
+import Dictionary from "../components/Dictionary";
+import MusicSection from "../components/MusicSection";
+import Timeline from "../components/Timeline";
+import Hero from "../components/Hero";
 
 interface LandingProps {
     toggleMusic: (play: boolean) => void;
