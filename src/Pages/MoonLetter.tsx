@@ -60,7 +60,7 @@ export default function MoonLetter() {
                     const startY = 200;
 
                     // END: Moon top-left (relative to same scene space)
-                    const endX = -250;
+                    const endX = -220;
                     const endY = -300;
 
                     // control points for arc
@@ -96,18 +96,20 @@ export default function MoonLetter() {
             className="fixed inset-0 z-50 overflow-hidden flex items-center justify-center"
             onMouseMove={handleMouseMove}
         >
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-            >
-                <button
-                    onClick={() => navigate("/allReasons")}
-                    className="glass-card px-8 py-3 absolute top-6 left-6 text-romantic-pink font-display tracking-widest text-xs uppercase transition-all flex items-center gap-3 mx-auto hover:bg-white/10 cursor-pointer"
+            {phase === "moon" && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                 >
-                    <ArrowLeft className="size-4" />
-                    Voltar
-                </button>
-            </motion.div>
+                    <button
+                        onClick={() => navigate("/allReasons")}
+                        className="glass-card px-8 py-3 absolute top-6 left-6 text-romantic-pink font-display tracking-widest text-xs uppercase transition-all flex items-center gap-3 mx-auto hover:bg-white/10 cursor-pointer"
+                    >
+                        <ArrowLeft className="size-4" />
+                        Voltar
+                    </button>
+                </motion.div>
+            )}
             <AnimatePresence mode="wait">
                 {phase === "intro" && (
                     <motion.div
