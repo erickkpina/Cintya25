@@ -17,86 +17,86 @@ interface PhotoSection {
 
 const sections: PhotoSection[] = [
     {
-        title: "Onde tudo começou",
+        title: "1",
         photos: [
             {
                 url: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=600",
-                caption: "O primeiro dia...",
+                caption: "Você",
             },
             {
                 url: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600",
-                caption: "Aquele sorriso",
+                caption: "me faz",
             },
             {
                 url: "https://images.unsplash.com/photo-1518199266791-739d6ff5f701?q=80&w=600",
-                caption: "Me faz...",
+                caption: "mais feliz",
             },
             {
                 url: "https://images.unsplash.com/photo-1522673607200-1648832cee98?q=80&w=600",
-                caption: "Muito mais...",
+                caption: "a cada dia que passa...",
             },
         ],
     },
     {
-        title: "Pequenos Detalhes",
+        title: "2",
         photos: [
             {
                 url: "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?q=80&w=600",
-                caption: "Seu olhar",
+                caption: "Você é a pessoa",
             },
             {
                 url: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=600",
-                caption: "Nossas tardes",
+                caption: "mais especial",
             },
             {
                 url: "https://images.unsplash.com/photo-1516589174184-c68526572af0?q=80&w=600",
-                caption: "Doce paz",
+                caption: "e linda",
             },
             {
                 url: "https://images.unsplash.com/photo-1533227268408-a7746955 units to be a0d?q=80&w=600",
-                caption: "Sempre...",
+                caption: "que existe no mundo!",
             },
         ],
     },
     {
-        title: "Aventuras Juntos",
+        title: "3",
         photos: [
             {
                 url: "https://images.unsplash.com/photo-1501901664534-534a41f39a4c?q=80&w=600",
-                caption: "Pelo mundo",
+                caption: "Você",
             },
             {
                 url: "https://images.unsplash.com/photo-1475483768296-6163e08872a1?q=80&w=600",
-                caption: "Lado a lado",
+                caption: "é o melhor presente",
             },
             {
                 url: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?q=80&w=600",
-                caption: "Horizontes",
+                caption: "que eu poderia",
             },
             {
                 url: "https://images.unsplash.com/photo-1534067783941-51c9c23ea34e?q=80&w=600",
-                caption: "Inesquecível",
+                caption: "pedir à Deus...",
             },
         ],
     },
     {
-        title: "Para Sempre",
+        title: "4",
         photos: [
             {
                 url: "https://images.unsplash.com/photo-1516589174184-c68526572af0?q=80&w=600",
-                caption: "Hoje",
+                caption: "Feliz aniversário,",
             },
             {
                 url: "https://images.unsplash.com/photo-1518199266791-739d6ff5f701?q=80&w=600",
-                caption: "Amanhã",
+                caption: "meu Amor!",
             },
             {
                 url: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=600",
-                caption: "Nosso amor",
+                caption: "Eu te amo",
             },
             {
                 url: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600",
-                caption: "Você é luz",
+                caption: "infinito ♡",
             },
         ],
     },

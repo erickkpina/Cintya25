@@ -6,12 +6,11 @@ import {
     useSpring,
     useTransform,
 } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import { animate } from "framer-motion";
-import { Rocket, Mail, Heart, MoonStar } from "lucide-react";
-import ArtemisRocket, {
-    ArtemisBooster,
-    ArtemisMainStage,
-} from "../Components/ArtemisRocket";
+import { Mail, Heart, MoonStar, ArrowLeft } from "lucide-react";
+import { ArtemisBooster, ArtemisMainStage } from "../Components/ArtemisRocket";
+
 import OrionCapsule from "../Components/OrionCapsule";
 
 export default function MoonLetter() {
@@ -19,6 +18,8 @@ export default function MoonLetter() {
         "intro"
     );
     const [showTrail, setShowTrail] = useState(true);
+
+    const navigate = useNavigate();
 
     // Parallax Values
     const mouseX = useMotionValue(0);
@@ -96,6 +97,18 @@ export default function MoonLetter() {
             className="fixed inset-0 z-50 overflow-hidden flex items-center justify-center"
             onMouseMove={handleMouseMove}
         >
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+            >
+                <button
+                    onClick={() => navigate("/allReasons")}
+                    className="glass-card px-8 py-3 absolute top-6 left-6 text-romantic-pink font-display tracking-widest text-xs uppercase transition-all flex items-center gap-3 mx-auto hover:bg-white/10 cursor-pointer"
+                >
+                    <ArrowLeft className="size-4" />
+                    Voltar
+                </button>
+            </motion.div>
             <AnimatePresence mode="wait">
                 {phase === "intro" && (
                     <motion.div
@@ -236,7 +249,6 @@ export default function MoonLetter() {
                                 duration: 7,
                                 ease: "easeInOut",
                             }}
-                            onAnimationComplete={() => setShowTrail(false)}
                             className="relative z-20 flex flex-col items-center"
                         >
                             {/* Orion Capsule (The survivor) */}
@@ -756,13 +768,7 @@ export default function MoonLetter() {
                                 </div>
 
                                 <button
-                                    onClick={() =>
-                                        window.dispatchEvent(
-                                            new CustomEvent("changeView", {
-                                                detail: "landing",
-                                            })
-                                        )
-                                    }
+                                    onClick={() => navigate("/")}
                                     className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-starlight/40 font-display text-[10px] tracking-widest uppercase hover:text-romantic-pink transition-colors"
                                 >
                                     Voltar ao início

@@ -67,9 +67,9 @@ export default function Hero({ toggleMusic, isMusicPaused }: HeroProps) {
                     className="max-w-xl mx-auto"
                 >
                     <p className="text-starlight/70 font-sans leading-relaxed text-sm md:text-base tracking-wide">
-                        Neste 18 de maio, celebramos não apenas 25 anos da sua
-                        vida, mas o privilégio de ter você iluminando o meu
-                        universo. Você é a estrela mais brilhante de todas.
+                        Hoje, celebramos não apenas 25 anos da sua vida, mas o
+                        privilégio de ter você iluminando a minha. Você é a
+                        estrela mais brilhante de todas.
                     </p>
                 </motion.div>
             </motion.div>
