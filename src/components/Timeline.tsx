@@ -15,15 +15,14 @@ const timelineData: TimelineItem[] = [
         year: "Dezembro 2022",
         title: "O primeiro encontro",
         description:
-            "Te busquei em casa (ficamos um pouquinho juntos e nos conhecendo)> Fomos ver Avatar (filme bem longo), quando chegamos de novo na sua casa ficamos um bom tempo no carro conversando e aí tiramos a nossa primeira foto!",
+            "Te busquei em casa (ficamos um pouquinho juntos e nos conhecendo). Fomos ver Avatar (filme bem longo), quando chegamos de novo na sua casa, ficamos um bom tempo no carro conversando e tiramos a nossa primeira foto!",
         side: "left",
     },
     {
         id: 2,
         year: "Abril 2023",
         title: "Primeiro show juntos",
-        description:
-            "Fomos para o show da Turma do Pagode e foi a primeira vez que fomos para um show juntos.",
+        description: "Fomos para o nosso primeiro show juntos! Turma do Pagode",
         side: "right",
     },
     {
@@ -31,7 +30,7 @@ const timelineData: TimelineItem[] = [
         year: "Junho 2024",
         title: "Primeira viagem de casal",
         description:
-            "Fomos de para Barcelona, e foi nossa primeira viagem de 100% de casal. Sua primeira vez na Espanha e nossa primeria corrida de Fórmula 1.",
+            "Fomos para Barcelona, e foi nossa primeira viagem 100% de casal. Sua primeira vez na Espanha e nossa primeira corrida de Fórmula 1.",
         side: "left",
     },
     {

@@ -738,7 +738,7 @@ export default function MoonLetter() {
                                         incrível e merece tudo de melhor que a
                                         vida tem a oferecer. Sou muito grato a
                                         Deus por ter a oportunidade e a
-                                        feliciade de compartilhar a vida com
+                                        felicidade de compartilhar a vida com
                                         você.
                                     </p>
 
@@ -771,7 +771,7 @@ export default function MoonLetter() {
                                     </p>
 
                                     <p className="indent-8 text-lg">
-                                        Feliz aniversário, minha pituca!
+                                        Feliz aniversário, minha princesa!
                                     </p>
 
                                     <div className="pt-12 text-right">
