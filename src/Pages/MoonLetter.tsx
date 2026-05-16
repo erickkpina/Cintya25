@@ -17,7 +17,6 @@ export default function MoonLetter() {
     const [phase, setPhase] = useState<"intro" | "flight" | "moon" | "letter">(
         "intro"
     );
-    const [showTrail, setShowTrail] = useState(true);
 
     const navigate = useNavigate();
 
