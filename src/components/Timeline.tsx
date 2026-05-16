@@ -13,7 +13,7 @@ const timelineData: TimelineItem[] = [
     {
         id: 1,
         year: "Dezembro 2022",
-        title: "O Primeiro Encontro",
+        title: "O primeiro encontro",
         description:
             "Te busquei em casa (ficamos um pouquinho juntos e nos conhecendo)> Fomos ver Avatar (filme bem longo), quando chegamos de novo na sua casa ficamos um bom tempo no carro conversando e aí tiramos a nossa primeira foto!",
         side: "left",
@@ -21,7 +21,7 @@ const timelineData: TimelineItem[] = [
     {
         id: 2,
         year: "Abril 2023",
-        title: "Primeiro Show juntos",
+        title: "Primeiro show juntos",
         description:
             "Fomos para o show da Turma do Pagode e foi a primeira vez que fomos para um show juntos.",
         side: "right",
@@ -29,7 +29,7 @@ const timelineData: TimelineItem[] = [
     {
         id: 3,
         year: "Junho 2024",
-        title: "Primeira Viagem de casal",
+        title: "Primeira viagem de casal",
         description:
             "Fomos de para Barcelona, e foi nossa primeira viagem de 100% de casal. Sua primeira vez na Espanha e nossa primeria corrida de Fórmula 1.",
         side: "left",
@@ -37,7 +37,7 @@ const timelineData: TimelineItem[] = [
     {
         id: 4,
         year: "Maio 2026",
-        title: "Seus 25 Anos",
+        title: "Seus 25 anos",
         description:
             "Mais um aniversário ao seu lado. Com esse somamos 4, que venham muitos outros!",
         side: "right",

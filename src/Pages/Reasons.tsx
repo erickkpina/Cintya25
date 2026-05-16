@@ -218,7 +218,7 @@ export default function Reasons() {
                                 }}
                             >
                                 <div className="absolute top-0 left-0 right-0 h-10 bg-black/5" />
-                                <p className="text-gray-800 font-serif text-xl md:text-2xl leading-relaxed text-center italic mt-4 select-none">
+                                <p className="text-gray-800 font-serif text-xl md:text-2xl leading-relaxed text-center italic mt-12 select-none">
                                     "{activeReason?.text ?? ""}"
                                 </p>
                                 <div className="absolute bottom-6 right-6 flex flex-col items-end opacity-70">

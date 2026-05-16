@@ -731,30 +731,48 @@ export default function MoonLetter() {
                                         18 de maio de 2026
                                     </div>
 
-                                    <p className="text-xl font-bold">
-                                        Minha querida,
+                                    <p className="text-xl font-bold">Amor,</p>
+
+                                    <p className="indent-8 text-lg">
+                                        Quero te desejar um feliz aniversário e
+                                        muitos anos de vida. Você é uma mulher
+                                        incrível e merece tudo de melhor que a
+                                        vida tem a oferecer. Sou muito grato a
+                                        Deus por ter a oportunidade e a
+                                        feliciade de compartilhar a vida com
+                                        você.
                                     </p>
 
                                     <p className="indent-8 text-lg">
-                                        Se eu pudesse voar até a Lua e trazer
-                                        uma estrela para você, eu o faria sem
-                                        hesitar. Mas a verdade é que nenhuma
-                                        estrela brilha tanto quanto o seu olhar
-                                        quando você sorri para mim.
+                                        Hoje é o 4º aniversário que passo ao seu
+                                        lado e não tenho palavras para expressar
+                                        o quanto sou feliz por isso. Cada dia
+                                        que passa tenho ainda mais certeza de
+                                        que você é a pessoa com quem quero
+                                        passar o resto da minha vida.
                                     </p>
 
                                     <p className="indent-8 text-lg">
-                                        Nesta missão que chamamos de vida, você
-                                        é meu destino e meu porto seguro.
-                                        Obrigado por ser minha parceira de
-                                        aventuras, por acreditar em nós e por me
-                                        amar com tanta intensidade.
+                                        Obrigado por todo nosso percurso juntos
+                                        até aqui e por tudo que ainda vamos
+                                        viver. Espero de coração que você goste
+                                        desse presentinho e que seja especial
+                                        para você.
                                     </p>
 
                                     <p className="indent-8 text-lg">
-                                        Te amo hoje, amanhã e até o fim dos
-                                        tempos. Ou, como dizemos nas estrelas:
-                                        até o infinito e além.
+                                        Independente de qualquer coisa que
+                                        aconteça, saiba que eu sempre vou estar
+                                        aqui do seu lado, torcendo e te apoiando
+                                        e todas as situações. Você é a pessoa
+                                        mais importante da minha vida, minha
+                                        maior certeza e meu melhor presente. Eu
+                                        te amo daqui até a lua e infinitas vezes
+                                        mais que isso!
+                                    </p>
+
+                                    <p className="indent-8 text-lg">
+                                        Feliz aniversário, minha pituca!
                                     </p>
 
                                     <div className="pt-12 text-right">

@@ -20,19 +20,19 @@ const sections: PhotoSection[] = [
         title: "1",
         photos: [
             {
-                url: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=600",
+                url: "/images/1.jpeg",
                 caption: "Você",
             },
             {
-                url: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600",
+                url: "/images/2.jpeg",
                 caption: "me faz",
             },
             {
-                url: "https://images.unsplash.com/photo-1518199266791-739d6ff5f701?q=80&w=600",
+                url: "/images/3.jpeg",
                 caption: "mais feliz",
             },
             {
-                url: "https://images.unsplash.com/photo-1522673607200-1648832cee98?q=80&w=600",
+                url: "/images/4.jpeg",
                 caption: "a cada dia que passa...",
             },
         ],
@@ -41,19 +41,19 @@ const sections: PhotoSection[] = [
         title: "2",
         photos: [
             {
-                url: "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?q=80&w=600",
+                url: "/images/5.jpeg",
                 caption: "Você é a pessoa",
             },
             {
-                url: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=600",
+                url: "/images/6.jpeg",
                 caption: "mais especial",
             },
             {
-                url: "https://images.unsplash.com/photo-1516589174184-c68526572af0?q=80&w=600",
+                url: "/images/7.jpeg",
                 caption: "e linda",
             },
             {
-                url: "https://images.unsplash.com/photo-1533227268408-a7746955 units to be a0d?q=80&w=600",
+                url: "/images/8.jpeg",
                 caption: "que existe no mundo!",
             },
         ],
@@ -62,19 +62,19 @@ const sections: PhotoSection[] = [
         title: "3",
         photos: [
             {
-                url: "https://images.unsplash.com/photo-1501901664534-534a41f39a4c?q=80&w=600",
+                url: "/images/9.jpeg",
                 caption: "Você",
             },
             {
-                url: "https://images.unsplash.com/photo-1475483768296-6163e08872a1?q=80&w=600",
+                url: "/images/10.jpeg",
                 caption: "é o melhor presente",
             },
             {
-                url: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?q=80&w=600",
+                url: "/images/11.jpeg",
                 caption: "que eu poderia",
             },
             {
-                url: "https://images.unsplash.com/photo-1534067783941-51c9c23ea34e?q=80&w=600",
+                url: "/images/12.jpeg",
                 caption: "pedir à Deus...",
             },
         ],
@@ -83,19 +83,19 @@ const sections: PhotoSection[] = [
         title: "4",
         photos: [
             {
-                url: "https://images.unsplash.com/photo-1516589174184-c68526572af0?q=80&w=600",
+                url: "/images/13.jpeg",
                 caption: "Feliz aniversário,",
             },
             {
-                url: "https://images.unsplash.com/photo-1518199266791-739d6ff5f701?q=80&w=600",
+                url: "/images/14.jpeg",
                 caption: "meu Amor!",
             },
             {
-                url: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?q=80&w=600",
+                url: "/images/15.jpeg",
                 caption: "Eu te amo",
             },
             {
-                url: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600",
+                url: "/images/16.jpeg",
                 caption: "infinito ♡",
             },
         ],
