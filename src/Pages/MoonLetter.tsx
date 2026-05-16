@@ -316,7 +316,7 @@ export default function MoonLetter() {
                         </motion.div>
 
                         <div className="absolute bottom-10 text-starlight/40 font-display text-[10px] tracking-widest uppercase animate-pulse">
-                            Separação efetuada. Orion em rota de pouso...
+                            Daqui até a Lua...
                         </div>
                     </motion.div>
                 )}

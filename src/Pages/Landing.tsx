@@ -39,15 +39,6 @@ export default function Landing({
                 Nossa História em Fotos
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </motion.button>
-
-            <footer className="py-20 text-center border-t border-white/5">
-                <p className="text-romantic-pink font-serif italic text-lg mb-2">
-                    Com todo o meu amor,
-                </p>
-                <p className="text-starlight/40 font-display tracking-[0.2em] text-[10px] uppercase">
-                    &copy; Erick & Cintya — Para Sempre
-                </p>
-            </footer>
         </main>
     );
 }
