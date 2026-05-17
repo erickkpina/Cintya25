@@ -12,6 +12,7 @@ import { Mail, Heart, MoonStar, ArrowLeft } from "lucide-react";
 import { ArtemisBooster, ArtemisMainStage } from "../components/ArtemisRocket";
 
 import OrionCapsule from "../components/OrionCapsule";
+import Constellations from "../components/Constellations";
 
 export default function MoonLetter() {
     const [phase, setPhase] = useState<"intro" | "flight" | "moon" | "letter">(
@@ -49,7 +50,7 @@ export default function MoonLetter() {
             return () => clearTimeout(timer);
         }
         if (phase === "flight") {
-            const timer = setTimeout(() => setPhase("moon"), 9000);
+            const timer = setTimeout(() => setPhase("moon"), 10000);
 
             animate(0, 1, {
                 duration: 8,
@@ -60,8 +61,8 @@ export default function MoonLetter() {
                     const startY = 200;
 
                     // END: Moon top-left (relative to same scene space)
-                    const endX = -220;
-                    const endY = -300;
+                    const endX = -170;
+                    const endY = -200;
 
                     // control points for arc
                     const cx1 = 120;
@@ -93,7 +94,7 @@ export default function MoonLetter() {
 
     return (
         <div
-            className="fixed inset-0 z-50 overflow-hidden flex items-center justify-center"
+            className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center"
             onMouseMove={handleMouseMove}
         >
             {phase === "moon" && (
@@ -134,33 +135,7 @@ export default function MoonLetter() {
                         exit={{ opacity: 0 }}
                         className="relative w-full h-full flex items-center justify-center overflow-hidden"
                     >
-                        {/* Parallax Stars background */}
-                        <div className="absolute inset-0 z-0">
-                            {Array.from({ length: 80 }).map((_, i) => (
-                                <motion.div
-                                    key={i}
-                                    animate={{
-                                        x: [0, (Math.random() - 0.5) * 50],
-                                        y: [0, (Math.random() - 0.5) * 50],
-                                    }}
-                                    transition={{
-                                        duration: 10,
-                                        repeat: Infinity,
-                                        ease: "linear",
-                                    }}
-                                    className="absolute bg-white rounded-full"
-                                    style={{
-                                        top: `${Math.random() * 100}%`,
-                                        left: `${Math.random() * 100}%`,
-                                        width: `${Math.random() * 2 + 0.5}px`,
-                                        height: `${Math.random() * 2 + 0.5}px`,
-                                        opacity: Math.random() * 0.5 + 0.2,
-                                    }}
-                                />
-                            ))}
-                        </div>
-
-                        {/* Realistic Earth (fading away) */}
+                        {/* Earth (fading away) */}
                         <motion.div
                             initial={{ scale: 1.4, x: 0, y: 0 }}
                             animate={{
@@ -222,12 +197,12 @@ export default function MoonLetter() {
                                 y: -400,
                             }}
                             animate={{
-                                scale: [0.1, 0.4, 2.5],
+                                scale: [0.1, 0.4, 1.8],
                                 opacity: [0, 1, 1],
                                 x: [600, 200, 0],
                                 y: [-400, -100, 0],
                             }}
-                            transition={{ duration: 6, ease: "easeInOut" }}
+                            transition={{ duration: 8, ease: "easeInOut" }}
                             className="absolute z-10 w-96 h-96 rounded-full bg-[#d0d0d0] shadow-[inset_-30px_-30px_60px_rgba(0,0,0,0.5)] border border-white/5 overflow-hidden"
                         >
                             {/* Moon Texture/Craters during approach */}
@@ -247,7 +222,7 @@ export default function MoonLetter() {
                                 rotate: [0, 55, 0],
                             }}
                             transition={{
-                                duration: 7,
+                                duration: 9,
                                 ease: "easeInOut",
                             }}
                             className="relative z-20 flex flex-col items-center"
@@ -280,7 +255,7 @@ export default function MoonLetter() {
                                         rotate: [0, 0, -45],
                                     }}
                                     transition={{
-                                        duration: 6,
+                                        duration: 5,
                                         times: [0, 0.3, 1],
                                     }}
                                 >
@@ -401,340 +376,40 @@ export default function MoonLetter() {
                 )}
 
                 {phase === "letter" && (
-                    <div>
-                        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                            {/* Orion Constellation (Artemis/Orion) - Left */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 1, duration: 2 }}
-                                className="absolute left-[5%] top-[15%] w-64 h-96 hidden lg:block"
-                            >
-                                <svg
-                                    viewBox="0 0 100 150"
-                                    className="w-full h-full"
-                                >
-                                    <defs>
-                                        <filter id="star-glow">
-                                            <feGaussianBlur
-                                                stdDeviation="1"
-                                                result="glow"
-                                            />
-                                            <feMerge>
-                                                <feMergeNode in="glow" />
-                                                <feMergeNode in="SourceGraphic" />
-                                            </feMerge>
-                                        </filter>
-                                    </defs>
-                                    {/* Meissa (Head) */}
-                                    <circle
-                                        cx="50"
-                                        cy="10"
-                                        r="1.5"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-                                    {/* Betelgeuse (Right Shoulder) */}
-                                    <circle
-                                        cx="30"
-                                        cy="30"
-                                        r="2.5"
-                                        fill="#ffccaa"
-                                        filter="url(#star-glow)"
-                                    />
-                                    {/* Bellatrix (Left Shoulder) */}
-                                    <circle
-                                        cx="75"
-                                        cy="35"
-                                        r="2"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-                                    {/* Belt Stars */}
-                                    <circle
-                                        cx="48"
-                                        cy="76"
-                                        r="2"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-                                    <circle
-                                        cx="53"
-                                        cy="73"
-                                        r="2"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-                                    <circle
-                                        cx="58"
-                                        cy="70"
-                                        r="2"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-                                    {/* Rigel (Left Knee) */}
-                                    <circle
-                                        cx="70"
-                                        cy="130"
-                                        r="2.5"
-                                        fill="#aaccff"
-                                        filter="url(#star-glow)"
-                                    />
-                                    {/* Saiph (Right Knee) */}
-                                    <circle
-                                        cx="68"
-                                        cy="100"
-                                        r="2"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-
-                                    <circle
-                                        cx="35"
-                                        cy="2"
-                                        r="2"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-
-                                    <circle
-                                        cx="25"
-                                        cy="3"
-                                        r="2"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-
-                                    <circle
-                                        cx="35"
-                                        cy="125"
-                                        r="2"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-
-                                    <circle
-                                        cx="75"
-                                        cy="2"
-                                        r="1"
-                                        fill="white"
-                                        opacity="0.6"
-                                    />
-
-                                    {/* Shield/Bow Area */}
-                                    <circle
-                                        cx="90"
-                                        cy="10"
-                                        r="1"
-                                        fill="white"
-                                        opacity="0.6"
-                                    />
-                                    <circle
-                                        cx="95"
-                                        cy="30"
-                                        r="1"
-                                        fill="white"
-                                        opacity="0.6"
-                                    />
-                                    <circle
-                                        cx="93"
-                                        cy="50"
-                                        r="1"
-                                        fill="white"
-                                        opacity="0.6"
-                                    />
-                                    <circle
-                                        cx="85"
-                                        cy="70"
-                                        r="1"
-                                        fill="white"
-                                        opacity="0.6"
-                                    />
-
-                                    {/* Lines */}
-                                    <g
-                                        stroke="white"
-                                        strokeWidth="0.5"
-                                        strokeOpacity="0.2"
-                                        fill="none"
-                                    >
-                                        <path d="M50 10 L30 30 M50 10 L75 35" />
-                                        <path d="M30 30 L48 76 L35 125 L70 130 L68 100 L58 70 L75 35" />
-                                        <path d="M30 30 L35 2" />
-                                        <path d="M30 30 L25 3" />
-                                        <path d="M48 76 L53 73 L58 70" />
-                                        <path d="M35 125 L70 130" />
-                                        <path
-                                            d="M75 35 L95 30 L93 50 L85 70"
-                                            strokeDasharray="3 3"
-                                        />
-                                        <path
-                                            d="M75 35 L95 30 L90 10 L75 2"
-                                            strokeDasharray="3 3"
-                                        />
-                                    </g>
-                                    <text
-                                        x="30"
-                                        y="145"
-                                        fill="white"
-                                        fontSize="4"
-                                        opacity="0.4"
-                                        fontStyle="italic"
-                                    >
-                                        Orion (Artemis)
-                                    </text>
-                                </svg>
-                            </motion.div>
-
-                            {/* Taurus Constellation - Right */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 1.5, duration: 2 }}
-                                className="absolute right-[5%] top-[25%] w-72 h-72 hidden lg:block"
-                            >
-                                <svg
-                                    viewBox="0 0 120 100"
-                                    className="w-full h-full"
-                                >
-                                    {/* Aldebaran (The eye) */}
-                                    <circle
-                                        cx="45"
-                                        cy="55"
-                                        r="3.5"
-                                        fill="#ffaa66"
-                                        filter="url(#star-glow)"
-                                    />
-                                    {/* Horns */}
-                                    <circle
-                                        cx="2"
-                                        cy="45"
-                                        r="2"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-                                    <circle
-                                        cx="110"
-                                        cy="68"
-                                        r="2"
-                                        fill="white"
-                                        filter="url(#star-glow)"
-                                    />
-                                    {/* Hyades V-shape */}
-                                    <circle
-                                        cx="37"
-                                        cy="58"
-                                        r="1.5"
-                                        fill="white"
-                                    />
-                                    <circle
-                                        cx="40"
-                                        cy="45"
-                                        r="1.5"
-                                        fill="white"
-                                    />
-                                    <circle
-                                        cx="25"
-                                        cy="25"
-                                        r="1.5"
-                                        fill="white"
-                                    />
-                                    <circle
-                                        cx="80"
-                                        cy="70"
-                                        r="1.5"
-                                        fill="white"
-                                    />
-                                    <circle cx="5" cy="5" r="2" fill="white" />
-                                    <circle
-                                        cx="112"
-                                        cy="80"
-                                        r="2"
-                                        fill="white"
-                                    />
-                                    <circle
-                                        cx="117"
-                                        cy="89"
-                                        r="2"
-                                        fill="white"
-                                    />
-                                    <circle
-                                        cx="65"
-                                        cy="90"
-                                        r="2"
-                                        fill="white"
-                                    />
-                                    <circle
-                                        cx="72"
-                                        cy="103"
-                                        r="2"
-                                        fill="white"
-                                    />
-
-                                    <g
-                                        stroke="white"
-                                        strokeWidth="0.5"
-                                        strokeOpacity="0.2"
-                                        fill="none"
-                                    >
-                                        {/* Left horn */}
-                                        <path d="M45 55 L37 58" />
-
-                                        {/* Right horn */}
-                                        <path d="M37 58 L2 45" />
-
-                                        {/* Hyades cluster */}
-                                        <path d="M45 55 L40 45 L25 25 L5 5" />
-
-                                        {/* Lower branch */}
-                                        <path d="M45 55 L80 70 L65 90 L72 103" />
-
-                                        {/* Pleiades cluster */}
-                                        <path d="M45 55 L80 70 L110 68 L112 80 L117 89" />
-                                    </g>
-                                    <text
-                                        x="70"
-                                        y="110"
-                                        fill="white"
-                                        fontSize="4"
-                                        opacity="0.4"
-                                        fontStyle="italic"
-                                    >
-                                        Touro
-                                    </text>
-                                </svg>
-                            </motion.div>
-                        </div>
+                    <div className="relative max-h-screen w-full flex flex-col items-center px-4 py-8 md:py-12 overflow-y-auto">
+                        <Constellations />
 
                         <motion.div
                             key="letter"
                             initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
                             animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                             transition={{ duration: 1, type: "spring" }}
-                            className="w-full max-w-2xl px-6"
+                            className="w-full max-w-2xl flex flex-col items-center z-10"
                         >
-                            <div className="bg-[#fdfbf7] p-8 md:p-16 shadow-2xl relative border-l-[30px] border-[#e8e4db] min-h-[500px]">
+                            <div className="bg-[#fdfbf7] p-6 sm:p-10 md:p-16 shadow-2xl relative border-l-[20px] sm:border-l-[30px] border-[#e8e4db] min-h-[500px] w-full">
                                 {/* Decorative Paper Texture */}
                                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/old-map.png')] opacity-10 pointer-events-none" />
 
-                                {/* Binder Holes (Decoration on the left panel) */}
-                                <div className="absolute left-[-20px] top-0 bottom-0 flex flex-col justify-around py-10 pointer-events-none">
+                                {/* Binder Holes */}
+                                <div className="absolute left-[-15px] sm:left-[-20px] top-0 bottom-0 flex flex-col justify-around py-10 pointer-events-none">
                                     {Array.from({ length: 15 }).map((_, i) => (
                                         <div
                                             key={i}
-                                            className="size-2 rounded-full bg-black/20 shadow-inner"
+                                            className="size-1.5 sm:size-2 rounded-full bg-black/20 shadow-inner"
                                         />
                                     ))}
                                 </div>
 
-                                <div className="relative space-y-8 font-serif text-gray-800 leading-relaxed italic">
-                                    <div className="text-right text-gray-500 text-sm font-display mb-10">
+                                <div className="space-y-4 font-serif text-gray-800 leading-relaxed italic">
+                                    <div className="text-right text-gray-500 text-sm font-display mb-6 md:mb-10">
                                         18 de maio de 2026
                                     </div>
 
-                                    <p className="text-xl font-bold">Amor,</p>
+                                    <p className="text-lg sm:text-xl font-bold">
+                                        Amor,
+                                    </p>
 
-                                    <p className="indent-8 text-lg">
+                                    <p className="indent-6 sm:indent-8 text-base sm:text-lg">
                                         Quero te desejar um feliz aniversário e
                                         muitos anos de vida. Você é uma mulher
                                         incrível e merece tudo de melhor que a
@@ -744,7 +419,7 @@ export default function MoonLetter() {
                                         você.
                                     </p>
 
-                                    <p className="indent-8 text-lg">
+                                    <p className="indent-6 sm:indent-8 text-base sm:text-lg">
                                         Hoje é o 4º aniversário que passo ao seu
                                         lado e não tenho palavras para expressar
                                         o quanto sou feliz por isso. Cada dia
@@ -753,7 +428,7 @@ export default function MoonLetter() {
                                         passar o resto da minha vida.
                                     </p>
 
-                                    <p className="indent-8 text-lg">
+                                    <p className="indent-6 sm:indent-8 text-base sm:text-lg">
                                         Obrigado por todo nosso percurso juntos
                                         até aqui e por tudo que ainda vamos
                                         viver. Espero de coração que você goste
@@ -761,38 +436,38 @@ export default function MoonLetter() {
                                         para você.
                                     </p>
 
-                                    <p className="indent-8 text-lg">
+                                    <p className="indent-6 sm:indent-8 text-base sm:text-lg">
                                         Independente de qualquer coisa que
                                         aconteça, saiba que eu sempre vou estar
                                         aqui do seu lado, torcendo e te apoiando
-                                        e todas as situações. Você é a pessoa
+                                        em todas as situações. Você é a pessoa
                                         mais importante da minha vida, minha
                                         maior certeza e meu melhor presente. Eu
                                         te amo daqui até a lua e infinitas vezes
                                         mais que isso!
                                     </p>
 
-                                    <p className="indent-8 text-lg">
+                                    <p className="indent-6 sm:indent-8 text-base sm:text-lg">
                                         Feliz aniversário, minha princesa!
                                     </p>
 
-                                    <div className="pt-12 text-right">
-                                        <p className="text-sm font-display text-romantic-pink/60 uppercase tracking-widest">
+                                    <div className="pt-8 md:pt-12 text-right">
+                                        <p className="text-xs sm:text-sm font-display text-romantic-pink/60 uppercase tracking-widest">
                                             Com amor,
                                         </p>
-                                        <p className="text-2xl font-bold mt-2 font-serif text-glow-red">
+                                        <p className="text-xl sm:text-2xl font-bold mt-2 font-serif text-glow-red">
                                             Erick Pina
                                         </p>
                                     </div>
                                 </div>
-
-                                <button
-                                    onClick={() => navigate("/")}
-                                    className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-starlight/40 font-display text-[10px] tracking-widest uppercase hover:text-romantic-pink transition-colors"
-                                >
-                                    Voltar ao início
-                                </button>
                             </div>
+
+                            <button
+                                onClick={() => navigate("/")}
+                                className="text-starlight/40 font-display text-[10px] tracking-widest uppercase hover:text-romantic-pink transition-colors cursor-pointer py-8 md:py-10"
+                            >
+                                Voltar ao início
+                            </button>
                         </motion.div>
                     </div>
                 )}

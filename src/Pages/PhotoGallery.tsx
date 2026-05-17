@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
-import { Pin, ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import Polaroid from "../components/Polaroid";
@@ -105,6 +105,14 @@ const sections: PhotoSection[] = [
 export default function PhotoGallery() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const navigate = useNavigate();
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (containerRef.current) {
+            // 'smooth' deixa a rolagem suave, se preferir instantâneo mude para 'auto'
+            containerRef.current.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    }, [currentIndex]);
 
     const nextSection = () => {
         if (currentIndex < sections.length - 1) {
@@ -119,29 +127,34 @@ export default function PhotoGallery() {
     };
 
     return (
-        <div className="fixed inset-0 z-40 flex flex-col items-center justify-center overflow-hidden">
+        /* 1. Mudamos justify-center para permitir que o scroll funcione corretamente sem cortar o topo */
+        <div
+            ref={containerRef}
+            className="fixed inset-0 z-40 flex flex-col items-center overflow-y-auto bg-background-dark/95"
+        >
             {/* Back button */}
             <motion.div
-                className="pb-18"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                className="w-full px-6 pt-6 z-50"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
             >
                 <button
                     onClick={() => navigate("/landing")}
-                    className="glass-card px-8 py-3 absolute top-6 left-6 text-romantic-pink font-display tracking-widest text-xs uppercase transition-all flex items-center gap-3 mx-auto hover:bg-white/10 cursor-pointer"
+                    className="glass-card px-6 py-2.5 text-romantic-pink font-display tracking-widest text-xs uppercase transition-all flex items-center gap-3 hover:bg-white/10 cursor-pointer"
                 >
                     <ArrowLeft className="size-4" />
                     Voltar
                 </button>
             </motion.div>
 
-            <div className="relative w-full max-w-7xl px-6 h-full flex flex-col justify-center gap-12">
+            {/* 2. O 'my-auto' e a remoção do max-h-screen garantem centralização segura e responsiva */}
+            <div className="relative w-full max-w-7xl px-6 flex flex-col justify-center gap-12 my-auto py-12 md:py-16">
                 <motion.div
                     key={currentIndex}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.05 }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-12 items-center py-18"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 items-center"
                 >
                     {sections[currentIndex].photos.map((photo, i) => (
                         <Polaroid
@@ -154,7 +167,7 @@ export default function PhotoGallery() {
                 </motion.div>
 
                 {/* Navigation Slider */}
-                <div className="flex flex-col items-center gap-6">
+                <div className="flex flex-col items-center gap-6 pt-4">
                     <div className="flex items-center gap-4">
                         <button
                             onClick={prevSection}
@@ -195,7 +208,7 @@ export default function PhotoGallery() {
                         <motion.button
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="mt-4 mb-18 glass-card px-8 py-3 text-romantic-pink font-serif italic text-lg shadow-xl transition-all flex items-center gap-3 mx-auto group hover:bg-white/10 cursor-pointer"
+                            className="mt-2 glass-card px-8 py-3 text-romantic-pink font-serif italic text-lg shadow-xl transition-all flex items-center gap-3 mx-auto group hover:bg-white/10 cursor-pointer"
                             onClick={() => navigate("/25reasons")}
                         >
                             Motivos para te amar
